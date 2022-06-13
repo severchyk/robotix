@@ -16,7 +16,8 @@ RUN \
   apt-get install --no-install-recommends -y \
     ros-galactic-desktop \
     gazebo9 \
-    code && \
+    code \
+    git && \
   echo "**** cleanup ****" && \
   apt-get autoclean && \
   rm -rf \
