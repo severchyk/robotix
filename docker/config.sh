@@ -15,11 +15,17 @@ else
 fi
 
 sleep 5
-sed -i -e '$a\\n# start ros2\nsource /opt/ros/galactic/setup.bash' config/.bashrc
+cd config
 
-if [[ $? > 0 ]];
+if grep -q ros ".bashrc";
 then
-    echo -e "\n**** Error while updating .bashrc ****\n"
+    echo -e "\n**** .bashrc already updated ****\n"
 else
-    echo -e "\n**** .bashrc successfully updated ****\n"
+    echo -e "\n# start ros2\nsource /opt/ros/galactic/setup.bash" >> .bashrc
+    if grep -q ros ".bashrc";
+    then
+        echo -e "\n**** .bashrc successfully updated ****\n"
+    else
+        echo -e "\n**** Error while updating .bashrc ****\n"
+    fi
 fi
